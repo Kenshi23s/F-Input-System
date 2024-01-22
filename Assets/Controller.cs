@@ -8,8 +8,6 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
 
-
-
     [field: SerializeField] public MonoPawn ControlingPawn { get; private set; }
 
     [SerializeField]
@@ -36,6 +34,7 @@ public class Controller : MonoBehaviour
     private void Update()
     {
         SendButtonInputs();
+        SendAxisInput();
     }
 
     void SendButtonInputs()
@@ -46,6 +45,14 @@ public class Controller : MonoBehaviour
 
             ControlingPawn.ActionInput(item, x);
 
+        }
+    }
+
+    void SendAxisInput()
+    {
+        foreach (GenericAxis item in Enum.GetValues(typeof(GenericInput)))
+        {
+            ControlingPawn.AxisInputs(item, _buttonConfig.GetAxis(item));
         }
     }
 

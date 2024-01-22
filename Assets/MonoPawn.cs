@@ -77,7 +77,6 @@ public class MonoPawn : MonoBehaviour
 
     }
 
-
     public void ActionInput(GenericInput k, FKeyInputSO input)
     {
         var col = InputActions.Where(x => x.G_Action == k).ToArray();

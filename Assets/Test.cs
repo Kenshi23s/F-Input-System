@@ -14,6 +14,7 @@ public class Test : MonoPawn
 
     public void Move(Vector2 newlookdir)
     {
+        if (newlookdir == Vector2.zero) return;
         transform.position += (Vector3.right * newlookdir.x + Vector3.forward * newlookdir.y) * Time.deltaTime * 2;
     }
 
@@ -23,13 +24,23 @@ public class Test : MonoPawn
         transform.forward = transform.position + new Vector3(newlookdir.x, transform.position.y, newlookdir.y);
     }
 
-    public void ChangeToRed()
+    public void ChangeToRed(FInputSO input)
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        if (input.InputHold(out var count))
+        {
+            if (count > 2f)
+                GetComponent<Renderer>().material.color = Color.red;
+        }
+
+
     }
 
-    public void ChangeToBlue()
+    public void ChangeToBlue(FInputSO input)
     {
-        GetComponent<Renderer>().material.color = Color.blue;
+        if (input.InputHold(out var count))
+        {
+            if (count > 2f)
+                GetComponent<Renderer>().material.color = Color.blue;
+        }
     }
 }

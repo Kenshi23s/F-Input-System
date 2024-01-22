@@ -161,9 +161,44 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <MyController>k__BackingField: {fileID: 721928425}
-  <InputActions>k__BackingField: []
+  <InputActions>k__BackingField:
+  - <Name>k__BackingField: Blue
+    <G_Action>k__BackingField: 1
+    _action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 686674221}
+          m_TargetAssemblyTypeName: Test, Assembly-CSharp
+          m_MethodName: ChangeToBlue
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - <Name>k__BackingField: Red
+    <G_Action>k__BackingField: 0
+    _action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 686674221}
+          m_TargetAssemblyTypeName: Test, Assembly-CSharp
+          m_MethodName: ChangeToRed
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   <AxisActions>k__BackingField:
   - <Name>k__BackingField: Look
+    <Axis>k__BackingField: 1
     _action:
       m_PersistentCalls:
         m_Calls:
@@ -180,6 +215,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - <Name>k__BackingField: Move
+    <Axis>k__BackingField: 0
     _action:
       m_PersistentCalls:
         m_Calls:
@@ -385,8 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ControlingPawn>k__BackingField: {fileID: 686674221}
-  CurrentActions:
-    _serializedList: []
+  _buttonConfig: {fileID: 11400000, guid: 35e000fdaecf82b498e1dcb55e98d12e, type: 2}
 --- !u!4 &721928426
 Transform:
   m_ObjectHideFlags: 0
@@ -521,8 +556,8 @@ Transform:
   m_GameObject: {fileID: 1807407669}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.70457095, w: 0.7096336}
-  m_LocalPosition: {x: -0.002, y: 0.286, z: 0.603}
-  m_LocalScale: {x: 0.51386, y: 0.51386, z: 0.51386}
+  m_LocalPosition: {x: -0.002, y: 0.223, z: 0.603}
+  m_LocalScale: {x: 0.51386, y: 0.41555858, z: 0.51386}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 686674225}

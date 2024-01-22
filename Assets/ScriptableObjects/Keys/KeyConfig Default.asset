@@ -46,3 +46,11 @@ MonoBehaviour:
       Value: {fileID: 0}
     - Key: 15
       Value: {fileID: 0}
+  Axis:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: c5ab02a08972bba47b241990b37e464b, type: 2}
+    - Key: 1
+      Value: {fileID: 11400000, guid: ce435797bd58da64a9c408ee7d66dd0a, type: 2}
+    - Key: 2
+      Value: {fileID: 0}
