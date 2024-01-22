@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AxisInput", menuName = "ScriptableObjects/FInput/Axis/Keyboard")]
 public class WASD_Axis : F_AxisInputSO
 {
-    //remplazar con un array de 4 teclas
+    //remplazar con un array de 4 teclas(por si el jugador quiere usar las teclas para moverse en vez de WASD)
 
     public override Vector2 GetAxis()
     {
