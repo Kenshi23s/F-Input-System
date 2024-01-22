@@ -10,19 +10,19 @@ public class WASD_Axis : F_AxisInputSO
     {
         Vector2 dir = Vector2.zero;
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
             dir += Vector2.up;
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
             dir += Vector2.down;
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
             dir += Vector2.right;
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
             dir += Vector2.left;
 
 
-        return dir.normalized;
+        return dir;
     }
 }
