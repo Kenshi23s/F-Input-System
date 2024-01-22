@@ -1,35 +1,27 @@
 using AYellowpaper.SerializedCollections;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
+
 
 public class Controller : MonoBehaviour
 {
 
 
-    public IPawn ControlingPawn { get; private set; }
-    [SerializeField] private MonoBehaviour PawnGO;
 
-    [SerializedDictionary, SerializeField]
-    SerializedDictionary<PawnAction, FInputSO> CurrentActions = new();
+    [field: SerializeField] public MonoPawn ControlingPawn { get; private set; }
+
+    [SerializeField]
+    InputConfig _buttonConfig;
 
     private void OnValidate()
     {
         //if (PawnGO == ControlingPawn as MonoBehaviour) return; 
-        if (PawnGO as IPawn == null )
+        if (ControlingPawn == null)
         {
-            PawnGO = null; CurrentActions.Clear(); return;
+            ControlingPawn = null; /*CurrentActions.Clear();*/ return;
         }
-     
-
-
-
-
-
     }
 
 
@@ -40,13 +32,43 @@ public class Controller : MonoBehaviour
         SetNewPawn(ControlingPawn);
 
     }
+
+    private void Update()
+    {
+        SendButtonInputs();
+    }
+
+    void SendButtonInputs()
+    {
+        foreach (GenericInput item in Enum.GetValues(typeof(GenericInput)))
+        {
+            if (!_buttonConfig.GetInput(item, out var x)) continue;
+
+            ControlingPawn.ActionInput(item, x);
+
+        }
+    }
+
+
+    void SetNewPawn(MonoPawn pawn)
+    {
+
+        //CurrentActions.Clear();
+        pawn.Posses(this);
+        //foreach (var item in )
+        //{
+        //    CurrentActions.Add(item, default);
+        //}
+    }
+
+    #region Editor
 #if UNITY_EDITOR
     [ContextMenu("Set As CurrentPawn")]
 
     void SelectCurrentPawn()
     {
         var x = Selection.gameObjects
-            .Select(x => x.GetComponent<IPawn>())
+            .Select(x => x.GetComponent<MonoPawn>())
             .Where(x => x != null)
             .First();
 
@@ -56,14 +78,5 @@ public class Controller : MonoBehaviour
     }
 
 #endif
-    void SetNewPawn(IPawn pawn)
-    {
-
-        CurrentActions.Clear();
-        Debug.Log(pawn);
-        foreach (var item in pawn.InputActions)
-        {
-            CurrentActions.Add(item, default);
-        }
-    }
+    #endregion
 }

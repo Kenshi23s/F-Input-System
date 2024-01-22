@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e393698262ddf5d44a4f31eece045ecc, type: 3}
+  m_Name: KeyConfig Default
+  m_EditorClassIdentifier: 
+  Inputs:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 1f934a0f45fa70746ada67391eda7245, type: 2}
+    - Key: 1
+      Value: {fileID: 11400000, guid: 686535446b9535746a715ec8803ad46d, type: 2}
+    - Key: 2
+      Value: {fileID: 0}
+    - Key: 3
+      Value: {fileID: 0}
+    - Key: 4
+      Value: {fileID: 0}
+    - Key: 5
+      Value: {fileID: 0}
+    - Key: 6
+      Value: {fileID: 0}
+    - Key: 7
+      Value: {fileID: 0}
+    - Key: 8
+      Value: {fileID: 0}
+    - Key: 9
+      Value: {fileID: 0}
+    - Key: 10
+      Value: {fileID: 0}
+    - Key: 11
+      Value: {fileID: 0}
+    - Key: 12
+      Value: {fileID: 0}
+    - Key: 13
+      Value: {fileID: 0}
+    - Key: 14
+      Value: {fileID: 0}
+    - Key: 15
+      Value: {fileID: 0}
