@@ -6,10 +6,17 @@ using UnityEngine.Events;
 public class Test : MonoPawn
 {
 
+
+
     private void Awake()
     {
-        //InputActions.Add(new PawnAction("ChangeToRed", ChangeToRed));
-        //InputActions.Add(new PawnAction("ChangeToBlue", ChangeToBlue));
+        OnPosses.AddListener(SetInputs);
+    }
+
+    void SetInputs(MainController x)
+    {
+        x.AimRefresh += Look;
+        x.MovementRefresh += Move;
     }
 
     public void Move(Vector2 inputdir)
@@ -17,7 +24,7 @@ public class Test : MonoPawn
         if (inputdir == Vector2.zero) return;
 
         Debug.LogError("Moviendome: " + inputdir);
-        transform.position += GetOrientedVector(new Vector3(inputdir.x, 0, inputdir.y), transform) * 2 * Time.deltaTime;
+        transform.position += new Vector3(inputdir.x, 0, inputdir.y) * 2 * Time.deltaTime;
         Debug.DrawLine(transform.position, transform.position + (GetOrientedVector(inputdir, transform).normalized * 3), Color.red);
         Debug.DrawLine(transform.position, transform.forward + transform.position, Color.blue);
     }

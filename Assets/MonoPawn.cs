@@ -25,7 +25,7 @@ public struct PawnAction
     }
 
     [field: SerializeField] public string Name { get; private set; }
-    [field: SerializeField] public GenericInput G_Action { get; private set; }
+    [field: SerializeField] public GenericAction G_Action { get; private set; }
     [SerializeField] UnityEvent<FInputSO> _action;
 
     public void Input(FInputSO x)
@@ -58,37 +58,12 @@ public struct PawnAxisAction
 public class MonoPawn : MonoBehaviour
 {
     [Header("Pawn")]
-    public UnityEvent<Controller> OnPosses = new();
+    public UnityEvent<MainController> OnPosses = new();
     public UnityEvent OnUnPosses = new();
 
-    [field: SerializeField] public Controller MyController { get; private set; }
-    [field: SerializeField] public List<PawnAction> InputActions { get; private set; }
-    [field: SerializeField] public PawnAxisAction[] AxisActions { get; private set; }
+    [field: SerializeField] public MainController MyController { get; private set; } 
 
-
-    public void AxisInputs(GenericAxis k, Vector2 v)
-    {
-        var col = AxisActions.Where(x => x.Axis == k).ToArray();
-        if (!col.Any()) return;
-
-        foreach (var action in col)
-            action.Input(v);
-
-
-    }
-
-    public void ActionInput(GenericInput k, FKeyInputSO input)
-    {
-        var col = InputActions.Where(x => x.G_Action == k).ToArray();
-        if (!col.Any()) return;
-
-        foreach (var action in col)
-            action.Input(input);
-
-
-    }
-
-    public void Posses(Controller newController)
+    public void Posses(MainController newController)
     {
         MyController = newController;
         OnPosses.Invoke(newController);

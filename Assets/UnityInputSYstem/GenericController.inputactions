@@ -1,0 +1,74 @@
+{
+    "name": "Controller",
+    "maps": [
+        {
+            "name": "Controller",
+            "id": "9653dbf8-6d3b-4210-8c31-2943414af2d3",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "eec61fc2-4cfb-44ba-8945-5b80ab4adc86",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=10)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Axis 1",
+                    "type": "Value",
+                    "id": "db41d374-f491-4566-a34d-a73e290d2dbf",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Axis 2",
+                    "type": "Value",
+                    "id": "1d80cf59-9b6d-4dcb-aa31-a754afe2a427",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "350193dd-88d0-49d2-a6d2-3b3334c058e3",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Axis 1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5607a7af-35d7-446d-a93c-b9ba58841b16",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Axis 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3614762-0927-4a75-b166-f35cc60bc6b2",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

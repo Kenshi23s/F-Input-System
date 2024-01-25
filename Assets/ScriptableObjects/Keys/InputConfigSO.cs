@@ -4,24 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GenericInput
+public enum GenericAction
 {
-    Button1,
-    Button2,
-    Button3,
-    Button4,
-    Button5,
-    Button6,
-    Button7,
-    Button8,
-    Button9,
-    Button10,
-    Button11,
-    Button12,
-    Button13,
-    Button14,
-    Button15,
-    Button16
+
+    Jump
+   , Reload
+   , Crouch
+   , ChangeWeapon
+   , Fire1
+   , Fire2,
+    Lethal
+   , Tactical
 }
 
 public enum GenericAxis
@@ -34,13 +27,13 @@ public enum GenericAxis
 public class InputConfig : ScriptableObject
 {
     [SerializedDictionary, SerializeField]
-    SerializedDictionary<GenericInput, FKeyInputSO> Inputs = new();
+    SerializedDictionary<GenericAction, FKeyInputSO> Inputs = new();
 
     [SerializedDictionary, SerializeField]
     SerializedDictionary<GenericAxis, F_AxisInputSO> Axis = new();
 
 
-    public bool GetInput(GenericInput x,out FKeyInputSO input)
+    public bool GetInput(GenericAction x, out FKeyInputSO input)
     {
         input = default(FKeyInputSO);
         if (!Inputs.TryGetValue(x, out var v)) return false;
