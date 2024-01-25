@@ -161,76 +161,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <MyController>k__BackingField: {fileID: 721928425}
-  <InputActions>k__BackingField:
-  - <Name>k__BackingField: Blue
-    <G_Action>k__BackingField: 1
-    _action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 686674221}
-          m_TargetAssemblyTypeName: Test, Assembly-CSharp
-          m_MethodName: ChangeToBlue
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - <Name>k__BackingField: Red
-    <G_Action>k__BackingField: 0
-    _action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 686674221}
-          m_TargetAssemblyTypeName: Test, Assembly-CSharp
-          m_MethodName: ChangeToRed
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  <AxisActions>k__BackingField:
-  - <Name>k__BackingField: Look
-    <Axis>k__BackingField: 1
-    _action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 686674221}
-          m_TargetAssemblyTypeName: Test, Assembly-CSharp
-          m_MethodName: Look
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - <Name>k__BackingField: Move
-    <Axis>k__BackingField: 0
-    _action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 686674221}
-          m_TargetAssemblyTypeName: Test, Assembly-CSharp
-          m_MethodName: Move
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  projectile: {fileID: 3280922359220783073, guid: c8695883ae0365c4baff772fb4da373a, type: 3}
+  shootPos: {fileID: 814554853}
 --- !u!23 &686674223
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -295,6 +227,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1807407670}
+  - {fileID: 814554853}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
@@ -488,11 +421,46 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: eec61fc2-4cfb-44ba-8945-5b80ab4adc86
     m_ActionName: Controller/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 57cea46e-f8d5-4f36-bd98-976f15586858
+    m_ActionName: Controller/Fire 1[/DualSenseGamepadHID/rightTrigger,/DualSenseGamepadHID1/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Controller
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1 &814554852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 814554853}
+  m_Layer: 0
+  m_Name: ShootPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &814554853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814554852}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 686674225}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

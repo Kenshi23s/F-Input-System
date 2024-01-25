@@ -2,28 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class Test : MonoPawn
 {
 
+    public Misile projectile;
+    public Transform shootPos;
 
 
-    private void Awake()
+
+
+    void Shoot(InputAction.CallbackContext context)
     {
-        OnPosses.AddListener(SetInputs);
+        Debug.Log(projectile);
+        var x = Instantiate(projectile, transform.position, Quaternion.identity);
+        x.InitializeProjectile(this);
+        x.GetComponent<Rigidbody>().AddForce(transform.forward * 10);
+
     }
 
-    void SetInputs(MainController x)
-    {
-        x.AimRefresh += Look;
-        x.MovementRefresh += Move;
-    }
+
 
     public void Move(Vector2 inputdir)
     {
         if (inputdir == Vector2.zero) return;
 
-        Debug.LogError("Moviendome: " + inputdir);
+        //Debug.LogError("Moviendome: " + inputdir);
         transform.position += new Vector3(inputdir.x, 0, inputdir.y) * 2 * Time.deltaTime;
         Debug.DrawLine(transform.position, transform.position + (GetOrientedVector(inputdir, transform).normalized * 3), Color.red);
         Debug.DrawLine(transform.position, transform.forward + transform.position, Color.blue);
@@ -41,37 +46,26 @@ public class Test : MonoPawn
     }
 
 
-    //Vector3 ReorientInput(Vector3 v)
-    //{
-    //    v.Normalize();
-    //    var x = new Vector3(transform.right.x * v.x, 0, transform.forward * v.);
-    //    Debug.LogWarning(v);
-    //    Debug.LogWarning(x);
 
-
-    //    return x;
-    //}
     public Vector3 GetOrientedVector(Vector3 T, Transform tr)
     {
         return (T.x * tr.right + T.y * tr.up + tr.forward * T.z).normalized;
     }
-    public void ChangeToRed(FInputSO input)
+
+
+    public override void SetInputs(MainController x)
     {
-        if (input.InputHold(out var count))
-        {
-            if (count > 2f)
-                GetComponent<Renderer>().material.color = Color.red;
-        }
-
-
+        Debug.Log("B");
+        x.AimRefresh += Look;
+        x.MovementRefresh += Move;
+        x._controller.Controller.Fire1.performed += Shoot;
     }
 
-    public void ChangeToBlue(FInputSO input)
+    public override void RemoveInputs(MainController x)
     {
-        if (input.InputHold(out var count))
-        {
-            if (count > 2f)
-                GetComponent<Renderer>().material.color = Color.blue;
-        }
+        Debug.Log("A");
+        x.AimRefresh -= Look;
+        x.MovementRefresh -= Move;
+        x._controller.Controller.Fire1.performed -= Shoot;
     }
 }

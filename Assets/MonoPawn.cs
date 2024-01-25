@@ -55,24 +55,39 @@ public struct PawnAxisAction
 
 }
 #endregion
-public class MonoPawn : MonoBehaviour
+public abstract class MonoPawn : MonoBehaviour
 {
     [Header("Pawn")]
     public UnityEvent<MainController> OnPosses = new();
-    public UnityEvent OnUnPosses = new();
+    public UnityEvent<MainController> OnUnPosses = new();
 
-    [field: SerializeField] public MainController MyController { get; private set; } 
+    [field: SerializeField] public MainController MyController { get; private set; }
+
+    public abstract void SetInputs(MainController newController);
+    public abstract void RemoveInputs(MainController oldController);
 
     public void Posses(MainController newController)
     {
+        if (newController.ControlingPawn != this) return;
+
+
+
         MyController = newController;
         OnPosses.Invoke(newController);
+        SetInputs(newController);
     }
 
-    public void UnPosses()
+
+
+    public void UnPosses(MainController oldController)
     {
-        if (MyController == null) return;
-        MyController = null;
-        OnUnPosses.Invoke();
+        Debug.Log("Unposses " + gameObject.name);
+        RemoveInputs(oldController);
+        OnUnPosses.Invoke(oldController);
+        if (oldController == MyController)
+        {
+            MyController = null;
+
+        }
     }
 }

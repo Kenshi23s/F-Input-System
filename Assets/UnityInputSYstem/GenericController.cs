@@ -53,6 +53,15 @@ public partial class @GenericController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Fire 1"",
+                    ""type"": ""Button"",
+                    ""id"": ""57cea46e-f8d5-4f36-bd98-976f15586858"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -66,6 +75,61 @@ public partial class @GenericController: IInputActionCollection2, IDisposable
                     ""action"": ""Axis 1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""b5110475-40d4-4b1c-8e61-9f54d11ca27d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Axis 1"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""5ca51268-e9ca-47bb-95f6-06cd0d144900"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Axis 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""83dea8d1-cfad-49fe-95c5-790815e99b5b"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Axis 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""59198f82-2bd3-4035-b1ee-8f57d5913d12"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Axis 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""d309b1ff-b18e-452e-b26d-cdf89ab49e79"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Axis 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -88,17 +152,35 @@ public partial class @GenericController: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""543e8bc9-d571-4768-b861-3fb246d6b4f2"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Fire 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Controller"",
+            ""bindingGroup"": ""Controller"",
+            ""devices"": []
+        }
+    ]
 }");
         // Controller
         m_Controller = asset.FindActionMap("Controller", throwIfNotFound: true);
         m_Controller_Jump = m_Controller.FindAction("Jump", throwIfNotFound: true);
         m_Controller_Axis1 = m_Controller.FindAction("Axis 1", throwIfNotFound: true);
         m_Controller_Axis2 = m_Controller.FindAction("Axis 2", throwIfNotFound: true);
+        m_Controller_Fire1 = m_Controller.FindAction("Fire 1", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -163,6 +245,7 @@ public partial class @GenericController: IInputActionCollection2, IDisposable
     private readonly InputAction m_Controller_Jump;
     private readonly InputAction m_Controller_Axis1;
     private readonly InputAction m_Controller_Axis2;
+    private readonly InputAction m_Controller_Fire1;
     public struct ControllerActions
     {
         private @GenericController m_Wrapper;
@@ -170,6 +253,7 @@ public partial class @GenericController: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Controller_Jump;
         public InputAction @Axis1 => m_Wrapper.m_Controller_Axis1;
         public InputAction @Axis2 => m_Wrapper.m_Controller_Axis2;
+        public InputAction @Fire1 => m_Wrapper.m_Controller_Fire1;
         public InputActionMap Get() { return m_Wrapper.m_Controller; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -188,6 +272,9 @@ public partial class @GenericController: IInputActionCollection2, IDisposable
             @Axis2.started += instance.OnAxis2;
             @Axis2.performed += instance.OnAxis2;
             @Axis2.canceled += instance.OnAxis2;
+            @Fire1.started += instance.OnFire1;
+            @Fire1.performed += instance.OnFire1;
+            @Fire1.canceled += instance.OnFire1;
         }
 
         private void UnregisterCallbacks(IControllerActions instance)
@@ -201,6 +288,9 @@ public partial class @GenericController: IInputActionCollection2, IDisposable
             @Axis2.started -= instance.OnAxis2;
             @Axis2.performed -= instance.OnAxis2;
             @Axis2.canceled -= instance.OnAxis2;
+            @Fire1.started -= instance.OnFire1;
+            @Fire1.performed -= instance.OnFire1;
+            @Fire1.canceled -= instance.OnFire1;
         }
 
         public void RemoveCallbacks(IControllerActions instance)
@@ -218,10 +308,20 @@ public partial class @GenericController: IInputActionCollection2, IDisposable
         }
     }
     public ControllerActions @Controller => new ControllerActions(this);
+    private int m_ControllerSchemeIndex = -1;
+    public InputControlScheme ControllerScheme
+    {
+        get
+        {
+            if (m_ControllerSchemeIndex == -1) m_ControllerSchemeIndex = asset.FindControlSchemeIndex("Controller");
+            return asset.controlSchemes[m_ControllerSchemeIndex];
+        }
+    }
     public interface IControllerActions
     {
         void OnJump(InputAction.CallbackContext context);
         void OnAxis1(InputAction.CallbackContext context);
         void OnAxis2(InputAction.CallbackContext context);
+        void OnFire1(InputAction.CallbackContext context);
     }
 }

@@ -52,7 +52,7 @@ public class MainController : MonoBehaviour
         Aim.Disable();
     }
 
-    
+
 
     private void OnValidate()
     {
@@ -79,10 +79,17 @@ public class MainController : MonoBehaviour
     }
 
 
-    void SetNewPawn(MonoPawn pawn)
+    public void SetNewPawn(MonoPawn pawn)
     {
-        pawn.Posses(this);     
-        
+        if (ControlingPawn != null)
+        {
+            ControlingPawn.UnPosses(this);
+        }
+        ControlingPawn = pawn;
+
+        ControlingPawn.Posses(this);
+
+
     }
 
     #region Editor
